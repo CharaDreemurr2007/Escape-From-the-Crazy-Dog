@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Movestraight : MonoBehaviour
 {
-    private float speed = 30;
+    private float speed = 40;
+    private float leftBound = 37;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +17,9 @@ public class Movestraight : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.back * Time.deltaTime * speed);
+        if(transform.position.x > leftBound && gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
