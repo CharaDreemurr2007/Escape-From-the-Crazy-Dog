@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager5 : MonoBehaviour
 {
     public GameObject obstaclePrefab;
-    private Vector3 spawnPos = new Vector3(-25, 1.5f, 1.31f);
-    private float startDelay = 2.5f;
-    private float repeatRate = 2.5f;
-    
+    private Vector3 spawnPos = new Vector3(-25, 2f, -0.09f);
+    private float startDelay = 4.5f;
+    private float repeatRate = 4.5f;
     // Start is called before the first frame update
     void Start()
     {
