@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1542617400, guid: 2f8d00bf5057f624e949aef802595da9, type: 3}
       propertyPath: gameOver
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1542617400, guid: 2f8d00bf5057f624e949aef802595da9, type: 3}
       propertyPath: jumpForce
