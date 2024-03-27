@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     public float zRange = 9;
     private Animator playerAnim;
+    public bool hasPowerup;
+    public GameObject powerupIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
             playerAnim.SetTrigger("Jump_trig");
         }
+        powerupIndicator.transform.position = transform.position + new Vector3(0, 3.72f, 0);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -46,5 +49,25 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("Death_b", true);
             playerAnim.SetInteger("DeathType_int", 1);
         }
+        if(collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        {
+            Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
+        }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Powerup"))
+        {
+            hasPowerup = true;
+            Destroy(other.gameObject);
+            StartCoroutine(PowerupCountdownRoutine());
+            powerupIndicator.gameObject.SetActive(true);
+        }
+    }
+    IEnumerator PowerupCountdownRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        hasPowerup = false;
+        powerupIndicator.gameObject.SetActive(false);
+    } 
 }
