@@ -53,6 +53,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
         }
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            gameOver = true;
+            Debug.Log("Game Over!");
+            playerAnim.SetBool("Death_b", true);
+            playerAnim.SetInteger("DeathType_int", 1);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -5,9 +5,9 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     public GameObject obstaclePrefab;
-    private Vector3 spawnPos = new Vector3(-25, 1.5f, 1.31f);
-    private float startDelay = 2.5f;
-    private float repeatRate = 2.5f;
+    private Vector3 spawnPos = new Vector3(-4.22f, 2.8f, 2.3f);
+    private float startDelay = 18f;
+    private float repeatRate = 18f;
     
     // Start is called before the first frame update
     void Start()
