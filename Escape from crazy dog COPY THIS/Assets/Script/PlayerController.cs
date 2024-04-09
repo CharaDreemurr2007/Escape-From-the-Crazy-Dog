@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnim;
     public bool hasPowerup;
     public GameObject powerupIndicator;
+    private float powerupStrength;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,24 +37,19 @@ public class PlayerController : MonoBehaviour
         }
         powerupIndicator.transform.position = transform.position + new Vector3(0, 3.72f, 0);
     }
+
     private void OnCollisionEnter(Collision collision)
     {
+        if((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Obstacle")) && hasPowerup)
+        {
+            Destroy(collision.gameObject);
+        }
+
         if(collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
         }
-        else if(collision.gameObject.CompareTag("Obstacle"))
-        {
-            gameOver = true;
-            Debug.Log("Game Over!");
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
-        }
-        if(collision.gameObject.CompareTag("Enemy") && hasPowerup)
-        {
-            Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
-        }
-        if(collision.gameObject.CompareTag("Enemy"))
+        else if((collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Enemy")) && !hasPowerup)
         {
             gameOver = true;
             Debug.Log("Game Over!");
@@ -61,6 +57,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetInteger("DeathType_int", 1);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Powerup"))
@@ -71,9 +68,10 @@ public class PlayerController : MonoBehaviour
             powerupIndicator.gameObject.SetActive(true);
         }
     }
+
     IEnumerator PowerupCountdownRoutine()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         hasPowerup = false;
         powerupIndicator.gameObject.SetActive(false);
     } 
