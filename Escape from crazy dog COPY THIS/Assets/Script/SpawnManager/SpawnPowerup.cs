@@ -6,7 +6,7 @@ public class SpawnPowerup : MonoBehaviour
 {
     public GameObject obstaclePrefab;
     private Vector3 spawnPos = new Vector3(-25f, 5.06f, 1.5f);
-    private float startDelay = 15;
+    private float startDelay = 1;
     private float repeatRate = 15;
     // Start is called before the first frame update
     void Start()
